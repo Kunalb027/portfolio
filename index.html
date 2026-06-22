@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KB | Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --surface-color: #1e293b;
+            --primary-color: #38bdf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 10%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h2.section-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--text-main);
+            border-bottom: 3px solid var(--primary-color);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        /* Hero Section */
+        #home {
+            align-items: flex-start;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-text h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            background: var(--primary-color);
+            color: #0f172a;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3);
+        }
+
+        /* About Section & Profile Image */
+        .about-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .profile-image-container {
+            flex-shrink: 0;
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Education Section */
+        .education-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .edu-card {
+            background: var(--surface-color);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+            transition: transform 0.3s;
+        }
+
+        .edu-card:hover {
+            transform: translateX(10px);
+        }
+
+        .edu-card h3 {
+            font-size: 1.4rem;
+            color: var(--text-main);
+            margin-bottom: 5px;
+        }
+
+        .edu-card .edu-degree {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--surface-color);
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .skill-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .skill-card ul {
+            list-style-type: none;
+            color: var(--text-muted);
+        }
+        
+        .skill-card ul li {
+            margin-bottom: 8px;
+        }
+
+        /* Projects Section */
+        .project-card {
+            background: var(--surface-color);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .project-card .tech-stack {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: var(--surface-color);
+            color: var(--text-muted);
+        }
+        
+        .social-links {
+            margin-bottom: 15px;
+        }
+        
+        .social-links a {
+            color: var(--text-main);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav ul {
+                display: none; /* Consider adding a hamburger menu later for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">KB.</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <div class="hero-text">
+            <h1>Hi, I'm <span>Kunal Yashwant Bisane</span></h1>
+            <p>Computer Engineering graduate equipped with a strong foundation in full-stack development, 
+                database architecture, and software testing methodologies.</p> 
+            <p>Passionate about writing clean, scalable code and translating complex algorithmic logic into reliable, user-focused applications. </p>   
+            <p> Proficient in Java, PHP, and modern JavaScript frameworks, with hands-on experience building end-to-end web applications. </p>   
+            <p>Actively seeking an Associate Software Engineer or Graduate Trainee role where I can contribute to production-grade codebases and solve challenging engineering problems.</p>    
+
+            <a href="#projects" class="btn">View My Work</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="profile-image-container">
+                <!-- Replace 'your-photo.jpg' with the actual path or URL to your photo -->
+                <img src="C:\Users\l\Desktop\4th SEM RTMNU\prifleop.jpeg" alt="Kunal Yashwant Bisane" class="profile-img">
+            </div>
+            <div class="about-text">
+                <p>Welcome! I'm Kunal, a dedicated Computer Engineering student driven by innovation and a desire to build efficient, user-friendly software. </p>
+                <p>Contact : 8080144599</p>
+                <p>Name : Kunal Yashwant Bisane </p>
+                <p>DOB : 27 July 2003</p>
+                <p>Address : Deosarra, Tumsar, Dis-Bhandara, Maharashtra, India, 441915 </p>
+                
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="education-timeline">
+            
+            <div class="edu-card">
+                <h3>Bachelor of Technology (B.Tech)</h3>
+                <div class="edu-degree">Computer Engineering</div>
+                <p>RASHTRASANT TUKADOJI MAHARAJ NAGPUR UNIVERSITY (RTMNU)</p>
+                <p>The Manoharbhai Patel Institute of Engineering & Technology Shahapur, Bhandara </p>
+                <p>Successfully completed core engineering coursework focusing on advanced programming, software testing, database management, and intelligent systems.</p>
+            </div>
+
+            <div class="edu-card">
+                <h3>Diploma</h3>
+                <div class="edu-degree"> Diploma in Computer Technology</div>
+                <p>MAHARASHTRA STATE BOAED OF TECHNICAL EDUCATION MUMBAI (MSBTE)</p>
+                <P>Government Polytechnic Sakoli</P>
+                <p>Successfully completed academic milestones establishing a strong foundation in Coding(Programming Languages) & Communication.</p>
+            </div>
+
+            <div class="edu-card">
+                <h3>Secondary School (10th Grade)</h3>
+                <div class="edu-degree">SSC Diploma</div>
+                <p>MAHARASHTRA STATE BOAED OF SECONDARY & HIGHER SECONDARY EDUCATION, PUNE</p>
+                <p>Adarsh Vidyalaya Sihora</p>
+                <p>Successfully completed core academic milestones with high proficiency.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Technical Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3><i class="fas fa-code"></i> Core Programming</h3>
+                <ul>
+                    <li>C & C++</li>
+                    <li>Java</li>
+                    <li>PHP</li>
+                    <li>Python</li>
+                    <li>Android</li>
+                    <li>Javascript</li>
+                    <li>HTML</li>
+                    <li>SQL</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3><i class="fas fa-cloud"></i> Salesforce Ecosystem</h3>
+                <ul>
+                    <li>Administration & Security (Profiles, OWD)</li>
+                    <li>Apex & Triggers</li>
+                    <li>SOQL / SOSL</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3><i class="fas fa-bug"></i> Software Testing</h3>
+                <ul>
+                    <li>White-box & Black-box Testing</li>
+                    <li>Unit Testing</li>
+                    <li>Defect & Test Management</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        
+        <div class="project-card">
+            <h3>Heart Disease Detection using Neuro-fuzzy Approach</h3>
+            <div class="tech-stack">Python | Machine Learning | PHP | MySQL (XAMP)</div>
+            <p>A comprehensive final-year engineering project focused on healthcare technology. Designed the project architecture and database schemas to leverage Adaptive Neuro-Fuzzy Inference Systems (ANFIS) for the early detection and risk assessment of heart disease.</p>
+            <p>The proposed project, “Heart Disease Detection Using Neuro-Fuzzy Approach,” aims to build
+                an intelligent hybrid system that predicts the likelihood of heart disease in a patient by analyzing
+                key medical attributes such as age, blood pressure, cholesterol level, chest pain type, and ECG
+                results. The system integrates the strengths of two powerful soft computing techniques —
+                Neural Networks and Fuzzy Logic — to achieve reliable and human-like decision-making.</p>
+            
+        </div>
+
+         <div class="project-card">
+            <h3>Real-Time Chat Application</h3>
+            <div class="tech-stack">HTML | PHP | Javascript | CSS | MySQL (XAMP)</div>
+            <p>The primary objectives of the real-time chat application are to deliver an efficient, secure, and user-friendly platform that enables seamless communication among multiple users. The application should meet both functional and non-functional requirements to ensure that it can handle real-time interactions and provide a positive user experience.</p>
+        </div>
+
+        <div class="project-card">
+            <h3>Voice based attendance system</h3>
+            <div class="tech-stack">Java | PHP | Android | MySQL (XAMP)</div>
+            <p>System that marks attendance is software for students studying in different institutes which can also be used in companies the knowledge is stored in Admin device who takes attendance, the scholar user can give attendance in their respective classes before entering the category.</p>
+        </div>
+
+        <div class="project-card">
+            <h3>Tour Guide Agency</h3>
+            <div class="tech-stack"> PHP | HTML | CSS | MySQL (XAMP)</div>
+            <p>It handles complex real-world logic like role-based access control (RBAC), database relationships, payment flows, and scheduling constraints.</p>
+
+        </div>
+
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.instagram.com/kunal_bisane?igsh=Nzc4MHY4bTQ4amJ3"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/share/1BDsBZe7Z2/"><i class="fab fa-facebook"></i></a>
+            <a href="https://wa.link/xkgywv"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://github.com/Kunalb027"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/kunal-bisane-b13060266?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:your.kunalbisen27@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>&copy; 2026 Kunal Bisane. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
